@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Code Validation</title>
+</head>
+<body>
+<div class="background-wrap">
+    <div class="background"></div>
+</div>
+
+<form id="codeValidationpanel">
+    <h1 id="litheader">Code Validation</h1>
+    <div class="inset">
+        <p>
+            <input
+                    type="text"
+                    name="code"
+                    id="code"
+                    placeholder="Code"
+            />
+        </p>
+    </div>
+    <div class="p-container" id="codeValidationError"></div>
+    <p class="p-container" id="button">
+        <input
+                type="submit"
+                id="codeValidation"
+                value="Validate Code"
+        />
+    </p>
+</form>
+
+<script>
+    function codeValidationFunction(event) {
+        let code = document.querySelector("#code").value;
+
+        if (validate(code)) {
+
+        }
+
+        event.preventDefault();
+    }
+
+    function validate(code) {
+        let status = true;
+        if (code === "") {
+            let msg;
+            msg = "Invalid Code";
+            document.getElementById("codeValidationError").innerHTML = msg;
+            status = false;
+        } else document.getElementById("codeValidationError").innerHTML = "";
+
+        return status;
+    }
+
+    document
+        .getElementById("codeValidationpanel")
+        .addEventListener("submit", codeValidationFunction);
+</script>
+</body>
+</html>
