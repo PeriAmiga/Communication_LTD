@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <title>Register</title>
+</head>
+
+<body>
+    <div class="background-wrap">
+        <div class="background"></div>
+    </div>
+
+    <form id="registerpanel" method = 'post' action = 'http://localhost:3000/register' >
+        <h1 id="litheader">Register</h1>
+        <div class="inset">
+            <p>
+                <input type="text" name="email" id="email" placeholder="Email">
+            </p>
+            <p>
+                <input type="text" name="username" id="username" placeholder="User Name">
+            </p>
+            <p>
+                <input type="password" name="password" id="password" placeholder="Password">
+            </p>
+        </div>
+        <div class="p-container" id="registerError"></div>
+        <p class="p-container">
+            <button id = register>Register</button>
+        </p>
+    </form>
+    <script>
+        async function postRegister(username, password, email)
+        {
+            console.log(username);
+        await fetch("http://localhost:3000/register", {
+            method: "POST", // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username: username, password: password, email:email})
+        });
+        }
+
+
+        function registerFunction(event){
+            let username = document.querySelector("#username").value;
+            let password = document.querySelector("#password").value;
+            let email = document.querySelector("#email").value;
+
+            if(validate(username, password, email))
+            {
+                postRegister(username,password,email);
+            }
+
+        event.preventDefault();
+        }
+
+        function validate(username, password, email) {
+            let status = true;
+            if (username === "" || password === "" || email === "")
+            {
+                let msg;
+                if (username === "" && password === "" && email === "")
+                    msg = "Invalid Details";
+                else if(username === "")
+                    msg = "Invalid Username";
+                else if(password === "")
+                    msg = "Invalid Password";
+                else
+                    msg = "Invalid Email";
+                document.getElementById("registerError").innerHTML = msg;
+                status = false;
+            }
+            else
+                document.getElementById("registerError").innerHTML = "";
+
+            return status;
+        }
+
+        document.getElementById("register").addEventListener("click", registerFunction);
+    </script>
+</body>
+</html>

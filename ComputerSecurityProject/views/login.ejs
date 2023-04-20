@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="background-wrap">
+        <div class="background"></div>
+    </div>
+
+    <form id="loginpanel">
+        <h1 id="litheader">Login</h1>
+        <div class="inset">
+            <p>
+                <input type="text" name="username" id="username" placeholder="User Name">
+            </p>
+            <p>
+                <input type="password" name="password" id="password" placeholder="Password">
+            </p>
+        </div>
+        <div class="p-container" id="loginError"></div>
+        <p class="p-container">
+            <input type="submit" id="login" value="Login">
+        </p>
+        <a href="#" class="rstpassword">Forget your password?</a>
+    </form>
+    <script>
+        function loginFunction(event){
+            let username = document.querySelector("#username").value;
+            let password = document.querySelector("#password").value;
+
+            if(validate(username, password))
+            {
+                const data = {'username': username, 'password': password}
+                const headers = {
+                    'Content-Type': 'application/json'
+                }
+                fetch(`/login`, {
+                    method: 'post',
+                    headers: headers,
+                    body: JSON.stringify(data),
+                })
+                    .then((response) => response.text())
+                    .then((res) => {
+                        if (res == "No permissions!")
+                            throw "No permissions";
+
+                        document.querySelector("body").innerHTML = res;
+                        var scripts = document.querySelector("body").querySelectorAll("script");
+                        for (var i = 0; i < scripts.length; i++) {
+                            if (scripts[i].innerText) {
+                                eval(scripts[i].innerText);
+                            }
+                            else
+                            {
+                                fetch(scripts[i].src).then(function (data) {
+                                    data.text().then(function (r) {
+                                        eval(r);
+                                        })
+                                    });
+                                }
+                                // To not repeat the element
+                                scripts[i].parentNode.removeChild(scripts[i]);
+                            }
+                    })
+                    .catch((error) => {
+                        alert(error)
+                    });
+            }
+            event.preventDefault();
+        }
+
+        function validate(username,password) {
+            let status = true;
+            if (username === "" || password === "")
+            {
+                let msg;
+                if (username === "" && password === "")
+                    msg = "Invalid Details";
+                else if(username === "")
+                    msg = "Invalid Username";
+                else
+                    msg = "Invalid Password";
+                document.getElementById("loginError").innerHTML = msg;
+                status = false;
+            }
+            else
+                document.getElementById("loginError").innerHTML = "";
+
+            return status;
+        }
+
+        document.getElementById("loginpanel").addEventListener("submit", loginFunction);
+    </script>
+</body>
+</html>
