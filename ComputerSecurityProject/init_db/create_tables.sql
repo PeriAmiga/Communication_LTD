@@ -1,5 +1,5 @@
 CREATE TABLE
-    IF NOT EXISTS `db`.`users` (
+    IF NOT EXISTS `db`.`Users` (
         `id` INT unsigned NOT NULL AUTO_INCREMENT,
         `email` VARCHAR(320) NOT NULL DEFAULT NULL,
         `username` VARCHAR(256) NOT NULL DEFAULT NULL,
@@ -18,3 +18,4 @@ CREATE TABLE
         `address` VARCHAR(95) NOT NULL DEFAULT NULL,
         PRIMARY KEY (`id`,`phone`,`email`)
 );
+
