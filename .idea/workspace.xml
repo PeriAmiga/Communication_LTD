@@ -7,6 +7,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -23,16 +30,31 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "javascript.nodejs.core.library.configured.version": "19.1.0",
+    "javascript.nodejs.core.library.typings.version": "18.16.1",
     "last_opened_file_path": "C:/Users/peri1/Desktop/סמסטר ב/אבטחת מחשבים/Coding/Ex2.py",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Node.js.tablesCreation.js">
+    <configuration name="createTables.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/ComputerSecurityProject/init_db/createTables.js" working-dir="$PROJECT_DIR$/ComputerSecurityProject/init_db">
+      <method v="2" />
+    </configuration>
+    <configuration name="dbCreation.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/ComputerSecurityProject/init_db/dbCreation.js" working-dir="$PROJECT_DIR$/ComputerSecurityProject/init_db">
+      <method v="2" />
+    </configuration>
+    <configuration name="tablesCreation.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/ComputerSecurityProject/init_db/tablesCreation.js" working-dir="$PROJECT_DIR$/ComputerSecurityProject/init_db">
+      <method v="2" />
+    </configuration>
     <configuration name="www" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/ComputerSecurityProject/bin/www" working-dir="$PROJECT_DIR$/ComputerSecurityProject/bin">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.tablesCreation.js" />
+        <item itemvalue="Node.js.dbCreation.js" />
+        <item itemvalue="Node.js.createTables.js" />
         <item itemvalue="Node.js.www" />
       </list>
     </recent_temporary>
@@ -47,6 +69,7 @@
       <updated>1682024109960</updated>
       <workItem from="1682024111174" duration="214000" />
       <workItem from="1682615271877" duration="1638000" />
+      <workItem from="1682621023040" duration="7673000" />
     </task>
     <servers />
   </component>
