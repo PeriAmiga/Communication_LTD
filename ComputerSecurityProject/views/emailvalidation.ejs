@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
     <title>Email Validation</title>
 </head>
 <body>
@@ -12,7 +12,7 @@
     <div class="background"></div>
 </div>
 
-<form id="emailValidationpanel">
+<form id="emailValidationpanel" method = post action = "http://localhost:3000/codevalidtion">
     <h1 id="litheader">Email Validation</h1>
     <div class="inset">
         <p>
@@ -26,22 +26,38 @@
     </div>
     <div class="p-container" id="emailValidationError"></div>
     <p class="p-container" id="button">
-        <input
-                type="submit"
-                id="emailValidation"
-                value="Get Email"
-        />
+        <button id="emailValidation">Get Email</button>
     </p>
 </form>
 
 <script>
-    function emailValidationFunction(event) {
-        let email = document.querySelector("#email").value;
+    async function postEmailValidtion(email)
+    {
 
-        if (validate(email)) {
+        const response = await fetch("http://localhost:3000/emailvalidation", {
+            method: "POST", // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({email:email})
+        });
+        const result = await response.json();
+        if (result)
+        {
+            window.location.href = `http://localhost:3000/codevalidation?email=${email}`;
+        }
+        else
+        {
+            alert('the details you hav')
 
         }
+    }
 
+    function emailValidationFunction(event) {
+        let email = document.querySelector("#email").value;
+        if (validate(email)) {
+            postEmailValidtion(email);
+        }
         event.preventDefault();
     }
 
@@ -59,7 +75,7 @@
 
     document
         .getElementById("emailValidationpanel")
-        .addEventListener("submit", emailValidationFunction);
+        .addEventListener("click", emailValidationFunction);
 </script>
 </body>
 </html>
