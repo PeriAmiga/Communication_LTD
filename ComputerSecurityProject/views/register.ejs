@@ -44,15 +44,14 @@
             body: JSON.stringify({ username: username, password: password, email:email})
         });
             const result = await response.json();
-            console.log(result);
             if (result)
             {
-                window.location.href = 'http://localhost:3000/login'
+                alert("You have been registered successfully")
+                window.location.href = 'http://localhost:3000/login';
             }
             else
             {
-                alert('the details you hav')
-
+                alert("Invalid Password");
             }
         }
 
