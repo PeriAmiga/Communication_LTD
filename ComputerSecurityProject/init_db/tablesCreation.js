@@ -20,7 +20,8 @@ connection.connect((err) => {
       \`id\` INT unsigned NOT NULL AUTO_INCREMENT,
       \`email\` VARCHAR(320) NOT NULL,
       \`username\` VARCHAR(256) NOT NULL,
-      \`password\` VARCHAR(255) NOT NULL CHECK (LENGTH(\`password\`) >= 16),
+      \`password\` VARCHAR(255) NOT NULL,
+      \`password_array\` TEXT NOT NULL,
       PRIMARY KEY (\`id\`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
   `;

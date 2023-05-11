@@ -44,10 +44,14 @@
             body: JSON.stringify({ username: username, password: password, email:email})
         });
             const result = await response.json();
-            if (result)
+            if (result.message === "accept")
             {
                 alert("You have been registered successfully")
                 window.location.href = 'http://localhost:3000/login';
+            }
+            else if (result.message === "sql")
+            {
+                alert("Invalid Email or Username");
             }
             else
             {
