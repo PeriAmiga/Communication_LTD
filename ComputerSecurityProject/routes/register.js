@@ -127,7 +127,6 @@ router.post('/', function(req, res, next)
 
         // Print out the usernames
         if (results.length > 0) {
-            sqlFlag = false;
             resFunction({message: "sql" });
         }
         else

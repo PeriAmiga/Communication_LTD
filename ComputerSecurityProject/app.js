@@ -10,8 +10,21 @@ var registerRouter = require('./routes/register');
 var loginRouter = require('./routes/login');
 var emailValidationRouter = require('./routes/emailvalidation');
 var codeValidationRouter = require('./routes/codevalidation');
+var changePasswordRouter = require('./routes/changepassword');
+var newPasswordRouter = require('./routes/newpassword');
+var homeRouter = require('./routes/home');
+var clientsRouter = require('./routes/clients');
 
 var app = express();
+
+const session = require('express-session');
+app.use(session({
+  secret: 'a338d5fa6067760540f0c5a740237259c84097ed1add7944763952b0667cddfa',
+  resave: false,
+  saveUninitialized: true,
+}));
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,6 +35,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -29,6 +43,10 @@ app.use('/register', registerRouter);
 app.use('/login', loginRouter);
 app.use('/emailvalidation', emailValidationRouter);
 app.use('/codevalidation', codeValidationRouter);
+app.use('/changepassword', changePasswordRouter);
+app.use('/newpassword', newPasswordRouter);
+app.use('/home', homeRouter);
+app.use('/clients', clientsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

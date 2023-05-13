@@ -1,13 +1,26 @@
 var express = require('express');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
+const mysql = require("mysql2");
 var router = express.Router();
+
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '123456',
+    database: 'Communication_LTD',
+});
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    console.log(req.query.email);
     if (req.query.email !== undefined)
     {
+        if (!req.session.emailValidation) {
+            // Flag does not exist, redirect or show an error message
+            res.redirect('error'); // Redirect to the "error" page
+            return;
+        }
         const code = Math.floor(Math.random() * 900000) + 100000;
         const sha1sum = crypto.createHash('sha1');
         sha1sum.update(code.toString());
@@ -39,17 +52,76 @@ router.get('/', function(req, res, next) {
             }
         });
 
-        res.render('codevalidation');
+        // Select all usernames from the Users table
+        const queryEmail = `SELECT * FROM Codes WHERE email = '${req.query.email}'`;
+
+        // Execute the query
+        connection.query(queryEmail, (err, results, fields) => {
+            if (err) throw err;
+            // Print out the usernames
+            if (results.length === 0) {
+                //INSERT new data
+                const query = 'INSERT INTO Codes (email, code) VALUES (?, ?)';
+                const values = [req.query.email, hashedCode];
+
+                connection.query(query, values, (error, results, fields) => {
+                    if (error) {
+                        console.error(error);
+                        throw error;
+                    }
+                    console.log('Data added to database.');
+                });
+            }
+            else
+            {
+                //UPDATE data
+                const query = 'UPDATE Codes SET code = ? WHERE email = ?';
+                const values = [hashedCode, req.query.email];
+
+                connection.query(query, values, (error, results, fields) => {
+                    if (error) {
+                        console.error(error);
+                        throw error;
+                    }
+                    console.log('Data updated successfully.');
+                });
+            }
+        });
+        req.session.emailValidation = false;
+        res.render('codevalidation', {email: req.query.email});
     }
     else
     {
+        req.session.emailValidation = false;
         res.render('error');
     }
 });
 /* GET home page. */
 router.post('/', function(req, res, next) {
-    console.log(req.body);
-    res.send("OK");
+
+    function resFunction(response)
+    {
+        if (!res.headersSent) {
+            res.send(response);
+        }
+    }
+
+    // Select all usernames from the Users table
+    const queryEmail = `SELECT * FROM Codes WHERE email = '${req.body.email}'`;
+
+    // Execute the query
+    connection.query(queryEmail, (err, results, fields) => {
+        if (err) throw err;
+        // Print out the usernames
+        if (results[0].code !== req.body.code) {
+            resFunction(false);
+        }
+        else
+        {
+            req.session.codeValidated = true;
+            resFunction(true);
+        }
+    });
 });
 
 module.exports = router;

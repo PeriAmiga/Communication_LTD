@@ -83,7 +83,7 @@ body {
   width: 350px;
 }
 
-#loginpanel, #changepasswordpanel {
+#loginpanel, #newpasswordpanel {
    background: #111;
    border: 1px solid #191919;
    border-radius: .4em;
@@ -98,6 +98,22 @@ body {
    top: 0;
    width: 300px;
  }
+
+#changepasswordpanel {
+  background: #111;
+  border: 1px solid #191919;
+  border-radius: .4em;
+  bottom: 0;
+  box-shadow: 0 5px 10px 5px rgba(0,0,0,0.2);
+  height: 320px;
+  left: 0;
+  margin: auto;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 300px;
+}
 
 #registerpanel {
   background: #111;
@@ -495,7 +511,7 @@ table {
   margin-left: auto;
   margin-right: auto;
   border-collapse: collapse;
-  background: #34495e;
+  background: #2c3e50;
   color: #f3f3f3;
 }
 
@@ -506,20 +522,19 @@ table td, table th {
 }
 
 
-table tr:hover {background-color: rgba(255, 230, 0, 0.7);}
+table tr:hover {background-color: rgb(150, 150, 150);}
 
 table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  /*background-color: #ff0014;*/
-  /*color: white;*/
+  color: white;
   height: 50%;
   text-align: center;
 }
 
 tr:nth-of-type(odd) {
-  background: #16a085;
+  background: #2c3e50;
 }
 
 th {
@@ -527,7 +542,7 @@ th {
   font-weight: bold;
 }
 
-#loginError, #registerError, #changePasswordError, #emailValidationError, #codeValidationError {
+#loginError, #registerError, #changePasswordError, #emailValidationError, #codeValidationError, #newPasswordError {
   color: red;
   font-weight: bold;
   text-align: center;

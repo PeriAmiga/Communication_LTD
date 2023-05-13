@@ -26,52 +26,43 @@
         </div>
         <div class="p-container" id="loginError"></div>
         <p class="p-container">
-            <input type="submit" id="login" value="Login">
+            <button id="login">Login</button>
         </p>
         <a href="http://localhost:3000/emailvalidation" class="rstpassword">Forget your password?</a>
     </form>
     <script>
+        async function postLogin(username, password)
+        {
+
+            const response = await fetch("http://localhost:3000/login", {
+                method: "POST", // or 'PUT'
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username: username, password: password})
+            });
+            const result = await response.json();
+            if (result.message === "accept")
+            {
+                window.location.href = 'http://localhost:3000/home';
+            }
+            else if(result.message === "email")
+            {
+                alert("You user is blocked, a new password sent to your email to release the block");
+            }
+            else
+            {
+                alert("Invalid Details");
+            }
+        }
+
         function loginFunction(event){
             let username = document.querySelector("#username").value;
             let password = document.querySelector("#password").value;
 
             if(validate(username, password))
             {
-                const data = {'username': username, 'password': password}
-                const headers = {
-                    'Content-Type': 'application/json'
-                }
-                fetch(`/login`, {
-                    method: 'post',
-                    headers: headers,
-                    body: JSON.stringify(data),
-                })
-                    .then((response) => response.text())
-                    .then((res) => {
-                        if (res == "No permissions!")
-                            throw "No permissions";
-
-                        document.querySelector("body").innerHTML = res;
-                        var scripts = document.querySelector("body").querySelectorAll("script");
-                        for (var i = 0; i < scripts.length; i++) {
-                            if (scripts[i].innerText) {
-                                eval(scripts[i].innerText);
-                            }
-                            else
-                            {
-                                fetch(scripts[i].src).then(function (data) {
-                                    data.text().then(function (r) {
-                                        eval(r);
-                                        })
-                                    });
-                                }
-                                // To not repeat the element
-                                scripts[i].parentNode.removeChild(scripts[i]);
-                            }
-                    })
-                    .catch((error) => {
-                        alert(error)
-                    });
+                postLogin(username,password);
             }
             event.preventDefault();
         }
@@ -92,11 +83,10 @@
             }
             else
                 document.getElementById("loginError").innerHTML = "";
-
             return status;
         }
 
-        document.getElementById("loginpanel").addEventListener("submit", loginFunction);
+        document.getElementById("login").addEventListener("click", loginFunction);
     </script>
 </body>
 </html>

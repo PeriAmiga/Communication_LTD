@@ -22,6 +22,7 @@ connection.connect((err) => {
       \`username\` VARCHAR(256) NOT NULL,
       \`password\` VARCHAR(255) NOT NULL,
       \`password_array\` TEXT NOT NULL,
+      \`login_attempts\` INT unsigned NOT NULL DEFAULT 0,
       PRIMARY KEY (\`id\`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
   `;
@@ -52,6 +53,22 @@ connection.connect((err) => {
             return;
         }
         console.log('Clients table created successfully!');
+    });
+
+    // create Codes table
+    const createCodesTableQuery = `CREATE TABLE IF NOT EXISTS \`Codes\` (
+      \`id\` INT unsigned NOT NULL AUTO_INCREMENT,
+      \`email\` VARCHAR(320) NOT NULL,
+      \`code\` VARCHAR(320) NOT NULL,
+      PRIMARY KEY (\`id\`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `;
+    connection.query(createCodesTableQuery, (error, results) => {
+        if (error) {
+            console.error('Error creating Codes table:', error);
+            return;
+        }
+        console.log('Codes table created successfully!');
     });
 
     connection.end();

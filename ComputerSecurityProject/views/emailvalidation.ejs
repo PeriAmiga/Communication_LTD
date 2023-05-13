@@ -31,7 +31,7 @@
 </form>
 
 <script>
-    async function postEmailValidtion(email)
+    async function postEmailValidation(email)
     {
 
         const response = await fetch("http://localhost:3000/emailvalidation", {
@@ -48,15 +48,14 @@
         }
         else
         {
-            alert('the details you hav')
-
+            alert('the details you have entered are wrong');
         }
     }
 
     function emailValidationFunction(event) {
         let email = document.querySelector("#email").value;
         if (validate(email)) {
-            postEmailValidtion(email);
+            postEmailValidation(email);
         }
         event.preventDefault();
     }
@@ -73,9 +72,7 @@
         return status;
     }
 
-    document
-        .getElementById("emailValidationpanel")
-        .addEventListener("click", emailValidationFunction);
+    document.getElementById("emailValidation").addEventListener("click", emailValidationFunction);
 </script>
 </body>
 </html>

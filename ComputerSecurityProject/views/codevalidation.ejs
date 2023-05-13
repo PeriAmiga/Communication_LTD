@@ -26,20 +26,40 @@
     </div>
     <div class="p-container" id="codeValidationError"></div>
     <p class="p-container" id="button">
-        <input
-                type="submit"
-                id="codeValidation"
-                value="Validate Code"
-        />
+        <button id="codeValidation">Validate Code</button>
     </p>
 </form>
 
 <script>
+    const email = '<%= email %>';
+    console.log(email);
+
+    async function postCodeValidation(email, code)
+    {
+
+        const response = await fetch("http://localhost:3000/codevalidation", {
+            method: "POST", // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({email:email, code:code})
+        });
+        const result = await response.json();
+        if (result)
+        {
+            window.location.href = `http://localhost:3000/newpassword?email=${email}`;
+        }
+        else
+        {
+            alert('the code you have entered are wrong');
+        }
+    }
+
     function codeValidationFunction(event) {
         let code = document.querySelector("#code").value;
 
         if (validate(code)) {
-
+            postCodeValidation(email, code);
         }
 
         event.preventDefault();
@@ -58,8 +78,7 @@
     }
 
     document
-        .getElementById("codeValidationpanel")
-        .addEventListener("submit", codeValidationFunction);
+        .getElementById("codeValidation").addEventListener("click", codeValidationFunction);
 </script>
 </body>
 </html>
