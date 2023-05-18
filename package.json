@@ -2,6 +2,7 @@
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "express-session": "^1.17.3",
+    "https": "^1.0.0",
     "mysql2": "^3.2.4",
     "nodemailer": "^6.9.1"
   }

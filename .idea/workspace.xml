@@ -34,7 +34,7 @@
     "javascript.nodejs.core.library.typings.version": "18.16.3",
     "last_opened_file_path": "C:/Users/peri1/Documents/GitHub/Communication_LTD/ComputerSecurityProject/views",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.tools",
+    "settings.editor.selected.configurable": "preferences.editor",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -49,9 +49,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Node.js.www">
-    <configuration name="createTables.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/ComputerSecurityProject/init_db/createTables.js" working-dir="$PROJECT_DIR$/ComputerSecurityProject/init_db">
-      <method v="2" />
-    </configuration>
     <configuration name="dbCreation.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/ComputerSecurityProject/init_db/dbCreation.js" working-dir="$PROJECT_DIR$/ComputerSecurityProject/init_db">
       <method v="2" />
     </configuration>
@@ -61,16 +58,19 @@
     <configuration name="tablesCreation.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/ComputerSecurityProject/init_db/tablesCreation.js" working-dir="$PROJECT_DIR$/ComputerSecurityProject/init_db">
       <method v="2" />
     </configuration>
+    <configuration name="www (1)" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/ComputerSecurityProject - without protections/bin/www" working-dir="$PROJECT_DIR$/ComputerSecurityProject - without protections/bin">
+      <method v="2" />
+    </configuration>
     <configuration name="www" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/ComputerSecurityProject/bin/www" working-dir="$PROJECT_DIR$/ComputerSecurityProject/bin">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Node.js.www" />
+        <item itemvalue="Node.js.www (1)" />
         <item itemvalue="Node.js.tablesCreation.js" />
         <item itemvalue="Node.js.dbCreation.js" />
         <item itemvalue="Node.js.newpassword.js" />
-        <item itemvalue="Node.js.createTables.js" />
       </list>
     </recent_temporary>
   </component>
@@ -88,6 +88,7 @@
       <workItem from="1682629501834" duration="113000" />
       <workItem from="1683216856421" duration="4930000" />
       <workItem from="1683970189392" duration="33886000" />
+      <workItem from="1684427583185" duration="17435000" />
     </task>
     <servers />
   </component>

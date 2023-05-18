@@ -86,7 +86,7 @@ router.post('/', function(req, res, next) {
         else
         {
             let tries = results[0].login_attempts;
-            if(results[0].username === user.username && results[0].password === user.password) {
+            if(results[0].password === user.password) {
                 resFunction({message: "accept"});
                 const query = 'UPDATE Users SET login_attempts = ? WHERE username = ?';
                 const values = [0, user.username];
