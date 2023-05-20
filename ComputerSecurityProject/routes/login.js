@@ -46,6 +46,7 @@ const connection = mysql.createConnection({
     user: 'root',
     password: '123456',
     database: 'Communication_LTD',
+    multipleStatements: true
 });
 
 /* GET home page. */
@@ -74,10 +75,10 @@ router.post('/', function(req, res, next) {
 
 
     // Select all usernames from the Users table
-    const queryUsername = `SELECT * FROM Users WHERE username = '${user.username}'`;
-
+    const queryUsername = `SELECT * FROM Users WHERE username = ?`;
+    const values = [user.username];
     // Execute the query
-    connection.query(queryUsername, (err, results, fields) => {
+    connection.query(queryUsername, values, (err, results, fields) => {
         if (err) throw err;
         // Print out the usernames
         if (results.length === 0) {
@@ -86,7 +87,7 @@ router.post('/', function(req, res, next) {
         else
         {
             let tries = results[0].login_attempts;
-            if(results[0].username === user.username && results[0].password === user.password) {
+            if(results[0].password === user.password) {
                 resFunction({message: "accept"});
                 const query = 'UPDATE Users SET login_attempts = ? WHERE username = ?';
                 const values = [0, user.username];

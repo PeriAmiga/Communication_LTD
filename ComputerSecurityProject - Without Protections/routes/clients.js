@@ -24,7 +24,7 @@ router.post('/', function(req, res, next) {
             city: req.body.city,
             address: req.body.address,
         };
-        const query = `INSERT INTO clients (firstName, lastName, phone, email, city, address) VALUES ('${client.firstname}', '${client.lastname}', '${client.phone}', '${client.email}', '${client.city}', '${client.address}')`;
+        const query = `INSERT INTO clients (firstName, lastName, phone, email, city, address) VALUES ('${client.firstname}', '${client.lastname}', '${client.phone}', '${client.email}', '${client.city}', '${req.body.address}')`;
         connection.query(query, (error, results, fields) => {
             if (error) {
                 console.error(error);

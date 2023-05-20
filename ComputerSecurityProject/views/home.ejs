@@ -108,7 +108,10 @@
                 const col6 = document.createElement("td");
                 col6.append(results[i].city);
                 const col7 = document.createElement("td");
-                col7.append(results[i].address);
+                const parser = new DOMParser();
+                const encodedHtml = parser.parseFromString(results[i].address, 'text/html').documentElement.textContent;
+                const address = document.createRange().createContextualFragment(encodedHtml);
+                col7.append(address);
                 row.append(col1);
                 row.append(col2);
                 row.append(col3);
