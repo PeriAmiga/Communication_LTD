@@ -28,6 +28,3 @@ connection.query(`CREATE DATABASE ${schemaName}`, (error, results) => {
 
 // close the connection when you're done
 connection.end();
-
-
-// need to create tables
